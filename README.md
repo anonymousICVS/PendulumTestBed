@@ -1,7 +1,5 @@
 # A Testbed for Networked Visually Controlled Systems
-Source code and build Instructions for the Inverted Pendulum Testbed
-
-This repository contains instructions to set up your very own testbed as presented in paper "".
+This repository contains instructions and source code to set up your very own testbed as presented in paper "".
 
 ## Prerequisites:
 
