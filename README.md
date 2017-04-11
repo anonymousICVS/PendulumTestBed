@@ -1,7 +1,7 @@
-# A Testbed for Networked Visually Controlled Systems
+## A Testbed for Networked Visually Controlled Systems
 This repository contains instructions and source code to set up your very own testbed as presented in paper "A Testbed for Networked Visually Controlled Systems". It is structured as follows:  folder 'EncoderPC' contains the C++ source for the PC which is connected to the camera that records the video of the pendulum. 'EncoderPC' encodes that video and sends it to 'DecoderAndImageProcessingPC'. Folder 'DecoderAndImageProcessingPC' contains the C++ source code for the PC which decodes the video and applies image processing to it and sends the angle to the 'PendulumRobot'.
  
-## Prerequisites:
+### Prerequisites:
 
 You need the following hardware:
 - 2 Desktop computers with Ubuntu 16.04 LTS and a C++ compiler (ideally use Qt)
@@ -11,17 +11,19 @@ You need the following hardware:
 - WiFi router (e.g. TP-Link TD-W8970B)
 - USB Camera (e.g. [XIMEA MQ022-CG-CM](https://www.ximea.com/en/products/cameras-filtered-by-sensor-types/mq022mg-cm) + [suitable lens](https://www.baslerweb.com/en/products/vision-components/lenses/ricoh-lens-fl-cc0614a-2m-f1-4-f6mm-2-3/) + tripod)
 
-## Setup
+### Physical Setup
+Build the robot from the Lego parts, according to these images. Attach the visual markers
+The information flow chain is as follows:
+Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot.
+
+Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in PendulumRobot/controller.py, line 206
+
+### Software Setup
 
 Set up the computers:
-
-Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot
-
-Align angle of camera horizontally, find yout the angle the DecoderPC puts out when manually bringing the pendulum to the balancing point. Subtract this value in PendulumRobot/controller.py, line 206
 
 Set up the EV3 robot:
 - Install [ev3dev](http://www.ev3dev.org/)
 
-
-## Questions?
+### Questions?
 If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
