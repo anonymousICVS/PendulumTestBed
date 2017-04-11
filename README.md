@@ -19,7 +19,7 @@ Set up the computers
 - On the DecoderAndImageProcessingPC, install OpenCV, SDL2, and ffmpeg. Copy the files from the DecoderAndImageProcessingPC to a new directory and open the Qt project. Make sure that on both PCs, the projects compile.
 
 Set up the EV3 robot
-- Install [ev3dev](http://www.ev3dev.org/)
+- Install [ev3dev](http://www.ev3dev.org/docs/getting-started/)
 - [Set up a WiFi-Connection](http://www.ev3dev.org/docs/networking/) to the DecoderAndImageProcessingPC
 - Copy the python files from folder PendulumRobot into the robot's home directory, do not copy folder PendulumRobot/images
 
