@@ -34,7 +34,7 @@ Align the angle of the camera horizontally and put the robot in the center of th
 - Run the Qt project on the EncoderPC
 - Run the Qt project on the DecoderPC
 - Ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
-- After a short startup period, the pendulum will start balancing!
+- After a short initialization period, the pendulum will start balancing!
 
 ### Troubleshooting
 The pendulum is not balancing? Make sure that
