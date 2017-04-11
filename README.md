@@ -38,7 +38,7 @@ Align angle of camera horizontally and put the robot in the center of the image 
 
 ### Troubleshooting
 The pendulum is not balancing? Make sure that
-- EncoderPC sends a video out (check the System Monitor)
+- EncoderPC sends data (check the System Monitor)
 - DecoderAndImageProcessingPC receives data
 - PendulumRobot receives data
 - PendulumRobot is in the field of view of the camera
