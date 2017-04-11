@@ -1,6 +1,6 @@
 # A Testbed for Networked Visually Controlled Systems
-This repository contains instructions and source code to set up your very own testbed as presented in paper "".
-
+This repository contains instructions and source code to set up your very own testbed as presented in paper "A Testbed for Networked Visually Controlled Systems". It is structured as follows:  folder 'EncoderPC' contains the C++ source for the PC which is connected to the camera that records the video of the pendulum. 'EncoderPC' encodes that video and sends it to 'DecoderAndImageProcessingPC'. Folder 'DecoderAndImageProcessingPC' contains the C++ source code for the PC which decodes the video and applies image processing to it and sends the angle to the 'PendulumRobot'.
+ 
 ## Prerequisites:
 
 You need the following hardware:
@@ -15,11 +15,13 @@ You need the following hardware:
 
 Set up the computers:
 
-Draw schematic
+Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot
+
+Align angle of camera horizontally, find yout the angle the DecoderPC puts out when manually bringing the pendulum to the balancing point. Subtract this value in PendulumRobot/controller.py, line 206
 
 Set up the EV3 robot:
 - Install [ev3dev](http://www.ev3dev.org/)
 
 
 ## Questions?
-If you need any help, don't hesitate to contact me: christoph.bachhuber@tum.de
+If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
