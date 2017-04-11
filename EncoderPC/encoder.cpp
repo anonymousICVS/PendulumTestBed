@@ -163,23 +163,6 @@ void Encoder::encodeSlot(uchar *pixels, int framenumber, int keyframe)
         data.append(reinterpret_cast<char*>(nals[0].p_payload), frame_size);
 //        udp->writeDatagram(data, QHostAddress("127.0.0.1"), 4999);
         udp->writeDatagram(data, QHostAddress("10.152.4.124"), 5000);
-//        std::cout << "Actual sent size: " << imagedata.size() << std::endl;
-//        QTextStream stream(m_file);
-//        stream << framenumber << "," << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() << ","
-//                  << frame_size << ","
-//                  << frame_size/125
-//                  << "\n";
-//        emit writeToNetwork(frame_size, nals[0].p_payload);
-//        if(framecounter == m_fps){
-//        std::cout << std::endl << ", ENC_time (us): "
-//                  << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count()
-//                  << ", Framesize (byte): "
-//                  << frame_size
-//                  << ", TRA_time(us): "
-//                  << frame_size/125         //1Gbit/s = 1000bits/us = 125bytes/us
-//                  << std::endl;
-//        framecounter=0;
-//        }
         framecounter++;
     }
 
@@ -251,96 +234,6 @@ void Encoder::setParams() {
   params.i_fps_num = m_fps;
   params.i_fps_den = 1;
   m_fps=m_fps/(m_tmax+1);
-
-  //Felix' Parameters
-
-//  if(preset.empty())
-//  {
-//      x264_param_default_preset(&params, "ultrafast", "zerolatency,fastdecode");
-//      x264_param_apply_profile(&params, "baseline");
-
-
-//      if(m_numBframes == 0)
-//      {
-//          params.i_keyint_max = 1;              //only I frames <-> 0 frames delay
-//      }
-//      else
-//      {
-//          params.i_keyint_max = m_numBframes + 2;
-//          params.i_bframe = m_numBframes;
-//          params.i_bframe_pyramid = 0;
-//      }
-
-//      if(m_qp >= 0)
-//      {
-//          params.rc.i_qp_max = m_qp;
-//          params.rc.i_qp_min = m_qp;
-//      }
-
-//  }
-//  else
-//  {
-//      x264_param_default_preset(&params, "ultrafast", "zerolatency,fastdecode");
-//      x264_param_apply_profile(&params, "baseline");
-//  }
-
-//  params.i_threads = 0; //Felix!
-//  params.i_width = m_width;
-//  params.i_height = m_height;
-//  params.i_fps_num = m_fps;
-//  params.i_fps_den = 1;
-//  m_fps=m_fps/(m_tmax+1);
-
-//  params.rc.i_qp_max = 20;
-//  params.rc.i_qp_min = 20;
-
-    /* x264_param_default_preset(&params, "ultrafast", "zerolatency,fastdecode");
-    x264_param_apply_profile(&params, "baseline");
-
-    params.i_threads = 0; //Felix!
-    params.i_width = m_width;
-    params.i_height = m_height;
-    params.i_fps_num = m_fps;
-    params.i_fps_den = 1;
-    m_fps=m_fps/(m_tmax+1);*/
-
-  //Ratecontrol Constant Quantizer
-  //params.rc.i_rc_method = X264_RC_CQP;
-  //params.rc.i_qp_constant = 23;
-  //params.rc.i_qp_min = 23;
-  //params.rc.i_qp_max = 23;
-  //params.rc.i_qp_step = 0;
-  //params.rc.i_aq_mode = X264_AQ_NONE;
-
-  //Ratecontrol Constant Bitrate
-  //params.rc.i_rc_method = X264_RC_ABR;
-  //params.rc.i_bitrate = 1000;               //bitrate in kilobits per second
-  //params.rc.f_rate_tolerance = 10;
-  //params.b_intra_refresh = 1;
-
-  //No Delayed Frames
-  //params.rc.b_mb_tree = 0;                  //no marcoblock tree algorithm
-  //params.i_bframe = 0;                      //no BFrames
-  //params.i_sync_lookahead = 0;              //no Encoder Lookahead Frames
-//    params.b_sliced_threads = 1;
-  //params.b_vfr_input = 0;                   //no Variable Frame Rate
-
-  //Fast Encoding
-//  params.analyse.b_transform_8x8 = 0;                       //no 8x8 DCT
-   //params.analyse.i_me_method = X264_ME_TESA;                 //use Diamond Search as Motion Estimation Algorithm
-//  params.analyse.i_me_range = 16;                           //set search range for Motion Estimation Algorithm to 16 pixels
-   //params.analyse.i_subpel_refine = 4;                       //fullpixel precision for Motion Estimation
-//  params.analyse.i_direct_mv_pred = X264_DIRECT_PRED_NONE;  //no Prediction for direct motion vectors
-//  params.i_frame_reference = 1;                             //use one reference frame for inter frame prediction
-  //params.b_cabac = 1;                                       //use CAVLC instead of CABAC
-//  params.b_deblocking_filter = 1;                           //use Deblocking Filter
-//  params.analyse.intra = 0;                                 //no partitioning of macroblocks into prediction blocks for intra frame prediction
-//  params.analyse.inter = 0;                                 //no partitioning of macroblocks into prediction blocks for inter frame prediction
-//  params.analyse.f_psy_rd = 0;                              //no psychovisual rate distortion optimization
-//  params.analyse.f_psy_trellis = 0;                         //no psychovisual trellis optimization
-//  params.analyse.b_psy = 0;                                 //no psy optimizations
-//  params.i_keyint_max = 250;                                //set GOP size to 250
-
 
 }
 
