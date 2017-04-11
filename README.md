@@ -28,7 +28,7 @@ Build the robot from the Lego parts, according to [these images](PendulumRobot/i
 
 The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderAndImageProcessingPC](DecoderAndImageProcessingPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
 
-Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point (after running the projects on the encoderPC and the DecoderAndImageProcessingPC). Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206). Be careful with the light: tune the camera aperture such that the DecoderAndImageProcessingPC reports a 'Light' value between 90 t0 110. Ideally, use a DC light source.
+Align the angle of the camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point (after running the projects on the encoderPC and the DecoderAndImageProcessingPC). Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206). Be careful with the light: tune the camera aperture such that the DecoderAndImageProcessingPC reports a 'Light' value between 90 t0 110. Ideally, use a DC light source.
 
 ### Running the testbed
 - Run the Qt project on the EncoderPC
