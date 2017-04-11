@@ -31,10 +31,10 @@ The information flow chain is as follows:Camera -> EncoderPC -> DecoderPC -> WiF
 Align the angle of the camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point (after running the projects on the encoderPC and the DecoderPC). Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206). Be careful with the light: tune the camera aperture such that the DecoderPC reports a 'Light' value between 90 and 110. Ideally, use a DC light source.
 
 ### Running the testbed
-- Run the Qt project on the EncoderPC
-- Run the Qt project on the DecoderPC
-- Ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
-- After a short initialization period, the pendulum will start balancing!
+1. Run the Qt project on the EncoderPC
+2. Run the Qt project on the DecoderPC
+3. Ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
+4. After a short initialization period, the pendulum will start balancing!
 
 ### Troubleshooting
 The pendulum is not balancing? Make sure that
