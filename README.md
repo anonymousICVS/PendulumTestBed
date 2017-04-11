@@ -15,6 +15,7 @@ You need the following hardware:
 
 Set up the computers:
 
+Draw schematic
 
 Set up the EV3 robot:
 - Install [ev3dev](http://www.ev3dev.org/)
