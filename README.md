@@ -3,9 +3,7 @@ This repository contains instructions and source code to set up your very own te
 
 It is structured as follows:  folder 'EncoderPC' contains the C++ source for the PC which is connected to the camera that records the video of the pendulum. 'EncoderPC' encodes that video and sends it to 'DecoderPC'. Folder 'DecoderPC' contains the C++ source code for the PC which decodes the video and applies image processing to it and sends the angle to the 'PendulumRobot'. Folder 'PendulumRobot' contains the code and images of the inverted pendulum.
  
-### Prerequisites:
-
-You need the following hardware:
+### Hardware Prerequisites:
 - 2 Desktop computers with Ubuntu 16.04 LTS and a C++ compiler (ideally use Qt, it's free for open source projects)
 - [LEGO Mindstorms EV3 Kit](https://www.amazon.com/LEGO-6029291-Mindstorms-EV3-31313/dp/B00CWER3XY/ref=sr_1_1?ie=UTF8&qid=1491830776&sr=8-1) + [Big wheels](https://www.bricklink.com/v2/catalog/catalogitem.page?P=2903c02#T=C&C=1)
 - WiFi USB Dongle (e.g. [EDIMAX EW-7811UN](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY/ref=sr_1_1?ie=UTF8&qid=1491830898&sr=8-1))
