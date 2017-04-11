@@ -13,13 +13,6 @@ You need the following hardware:
 - WiFi router (e.g. TP-Link TD-W8970B)
 - USB Camera (e.g. [XIMEA MQ022-CG-CM](https://www.ximea.com/en/products/cameras-filtered-by-sensor-types/mq022mg-cm) + [suitable lens](https://www.baslerweb.com/en/products/vision-components/lenses/ricoh-lens-fl-cc0614a-2m-f1-4-f6mm-2-3/) + tripod)
 
-### Physical Setup
-Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg). Put the Wifi dongle into the [USB Port](PendulumRobot/images/right.jpg).
-
-The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderAndImageProcessingPC](DecoderAndImageProcessingPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
-
-Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206).
-
 ### Software Setup
 Set up the computers
 - on the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project
@@ -30,11 +23,26 @@ Set up the EV3 robot
 - [Set up a WiFi-Connection](http://www.ev3dev.org/docs/networking/) to the DecoderAndImageProcessingPC
 - Copy the python files from folder PendulumRobot into the robot's home directory, do not copy folder PendulumRobot/images
 
+### Physical Setup
+Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg). Put the Wifi dongle into the [USB Port](PendulumRobot/images/right.jpg).
+
+The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderAndImageProcessingPC](DecoderAndImageProcessingPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
+
+Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point (after running the projects on the encoderPC and the DecoderAndImageProcessingPC). Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206). Be careful with the light: tune the camera aperture such that the DecoderAndImageProcessingPC reports a 'Light' value between 90 t0 110. Ideally, use a DC light source.
+
 ### Running the testbed
 - Run the Qt project on the EncoderPC
 - Run the Qt project on the DecoderAndImageProcessingPC
 - ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
 - After a short startup period, the pendulum will start balancing!
+
+### Troubleshooting
+The pendulum is not balancing? Make sure that
+- EncoderPC sends a video out (check the System Monitor)
+- DecoderAndImageProcessingPC receives data
+- PendulumRobot receives data
+- PendulumRobot is in the field of view of the camera
+
 
 ### Questions?
 If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
