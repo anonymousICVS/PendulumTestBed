@@ -13,8 +13,8 @@ You need the following hardware:
 
 ### Physical Setup
 Build the robot from the Lego parts, according to these images. Glue the [visual markers](visualMarkers.pdf) to the robot as seen in the images.
-The information flow chain is as follows:
-Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot.
+
+The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot. Connect the elements to each other
 
 Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206)
 
