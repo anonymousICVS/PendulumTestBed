@@ -12,7 +12,7 @@ You need the following hardware:
 - USB Camera (e.g. [XIMEA MQ022-CG-CM](https://www.ximea.com/en/products/cameras-filtered-by-sensor-types/mq022mg-cm) + [suitable lens](https://www.baslerweb.com/en/products/vision-components/lenses/ricoh-lens-fl-cc0614a-2m-f1-4-f6mm-2-3/) + tripod)
 
 ### Physical Setup
-Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in the images.
+Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg).
 
 The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot. Connect the elements to each other
 
