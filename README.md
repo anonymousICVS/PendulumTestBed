@@ -16,7 +16,7 @@ Build the robot from the Lego parts, according to these images. Glue the [visual
 The information flow chain is as follows:
 Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot.
 
-Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in PendulumRobot/controller.py, line 206
+Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206)
 
 ### Software Setup
 
