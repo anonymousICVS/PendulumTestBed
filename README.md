@@ -15,7 +15,7 @@ You need the following hardware:
 
 ### Software Setup
 Set up the computers
-- on the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project
+- On the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project
 - On the DecoderPC, install OpenCV, SDL2, and ffmpeg. Copy the files from the DecoderPC to a new directory and open the Qt project. Make sure that on both PCs, the projects compile.
 
 Set up the EV3 robot
@@ -33,7 +33,7 @@ Align the angle of the camera horizontally and put the robot in the center of th
 ### Running the testbed
 - Run the Qt project on the EncoderPC
 - Run the Qt project on the DecoderPC
-- ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
+- Ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
 - After a short startup period, the pendulum will start balancing!
 
 ### Troubleshooting
