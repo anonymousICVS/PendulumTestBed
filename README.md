@@ -1,4 +1,4 @@
-## A Testbed for Networked Visually Controlled Systems
+# A Testbed for Networked Visually Controlled Systems
 This repository contains instructions and source code to set up your very own testbed as presented in paper "A Testbed for Networked Visually Controlled Systems". The testbed balances an inverted pendulum in a vertical position, visually controlled by a camera.
 
 It is structured as follows:  folder 'EncoderPC' contains the C++ source for the PC which is connected to the camera that records the video of the pendulum. 'EncoderPC' encodes that video and sends it to 'DecoderAndImageProcessingPC'. Folder 'DecoderAndImageProcessingPC' contains the C++ source code for the PC which decodes the video and applies image processing to it and sends the angle to the 'PendulumRobot'. Folder 'PendulumRobot' contains the code and images of the inverted pendulum.
@@ -21,9 +21,11 @@ The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageP
 Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206).
 
 ### Software Setup
-Set up the computers: on the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project. On the DecoderAndImageProcessingPC, install OpenCV, SDL2, and ffmpeg. Copy the files from the DecoderAndImageProcessingPC to a new directory and open the Qt project.
+Set up the computers
+- on the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project
+- On the DecoderAndImageProcessingPC, install OpenCV, SDL2, and ffmpeg. Copy the files from the DecoderAndImageProcessingPC to a new directory and open the Qt project. Make sure that on both PCs, the projects compile.
 
-Set up the EV3 robot:
+Set up the EV3 robot
 - Install [ev3dev](http://www.ev3dev.org/)
 - [Set up a WiFi-Connection](http://www.ev3dev.org/docs/networking/) to the DecoderAndImageProcessingPC
 - Copy the python files from folder PendulumRobot into the robot's home directory, do not copy folder PendulumRobot/images
@@ -32,7 +34,7 @@ Set up the EV3 robot:
 - Run the Qt project on the EncoderPC
 - Run the Qt project on the DecoderAndImageProcessingPC
 - ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
-- After a short startup period, the pendulum will start balancing
+- After a short startup period, the pendulum will start balancing!
 
 ### Questions?
 If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
