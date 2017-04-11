@@ -4,7 +4,7 @@ This repository contains instructions and source code to set up your very own te
 ### Prerequisites:
 
 You need the following hardware:
-- 2 Desktop computers with Ubuntu 16.04 LTS and a C++ compiler (ideally use Qt)
+- 2 Desktop computers with Ubuntu 16.04 LTS and a C++ compiler (ideally use Qt, it's free for open source projects)
 - [LEGO Mindstorms EV3 Kit](https://www.amazon.com/LEGO-6029291-Mindstorms-EV3-31313/dp/B00CWER3XY/ref=sr_1_1?ie=UTF8&qid=1491830776&sr=8-1) + [Big wheels](https://www.bricklink.com/v2/catalog/catalogitem.page?P=2903c02#T=C&C=1)
 - Optional, but recommended: the Mindstorms EV3 [rechargeable battery](https://www.amazon.com/LEGO-Mindstorms-EV3-Rechargeable-Battery/dp/B00G1IMOEA/ref=sr_1_2?ie=UTF8&qid=1491830834&sr=8-2) and [charger](https://www.amazon.com/LEGO-Mindstorms-9833-Transformer-Charger/dp/B003BCLOAY/ref=sr_1_3?ie=UTF8&qid=1491830834&sr=8-3)
 - WiFi USB Dongle (e.g. [EDIMAX EW-7811UN](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY/ref=sr_1_1?ie=UTF8&qid=1491830898&sr=8-1))
@@ -12,18 +12,25 @@ You need the following hardware:
 - USB Camera (e.g. [XIMEA MQ022-CG-CM](https://www.ximea.com/en/products/cameras-filtered-by-sensor-types/mq022mg-cm) + [suitable lens](https://www.baslerweb.com/en/products/vision-components/lenses/ricoh-lens-fl-cc0614a-2m-f1-4-f6mm-2-3/) + tripod)
 
 ### Physical Setup
-Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg).
+Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg). Put the Wifi dongle into the [USB Port](PendulumRobot/images/right.jpg).
 
-The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> PendulumRobot. Connect the elements to each other, assign ip addresses accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderAndImageProcessingPC](DecoderAndImageProcessingPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
+The information flow chain is as follows:Camera -> EncoderPC -> DecoderAndImageProcessingPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderAndImageProcessingPC](DecoderAndImageProcessingPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
 
-Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206)
+Align angle of camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point. Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206).
 
 ### Software Setup
-
-Set up the computers:
+Set up the computers: on the EncoderPC, install OpenCV, x264, and the [XIMEA linux driver](https://www.ximea.com/support/wiki/apis/XIMEA_Linux_Software_Package). Copy the files from EncoderPC folder to a new directory and open the Qt project. On the DecoderAndImageProcessingPC, install OpenCV, SDL2, and ffmpeg. Copy the files from the DecoderAndImageProcessingPC to a new directory and open the Qt project.
 
 Set up the EV3 robot:
 - Install [ev3dev](http://www.ev3dev.org/)
+- [Set up a WiFi-Connection](http://www.ev3dev.org/docs/networking/) to the DecoderAndImageProcessingPC
+- Copy the python files from folder PendulumRobot into the robot's home directory, do not copy folder PendulumRobot/images
+
+### Running the testbed
+- Run the Qt project on the EncoderPC
+- Run the Qt project on the DecoderAndImageProcessingPC
+- ssh to the robot (user: robot, pwd: maker) and run the python code 'controller.py' while manually holding the pendulum in a vertical position
+- After a short startup period, the pendulum will start balancing
 
 ### Questions?
 If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
