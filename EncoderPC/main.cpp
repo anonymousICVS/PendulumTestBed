@@ -110,19 +110,6 @@ int main(int argc, char* argv[])
     std::getchar();
     shH->m_shutdown = true;
 
-//    Invoke the Python post processing script
-//    char *name="test";
-//    Py_SetProgramName(name);
-//    Py_Initialize();
-//    FILE* MyScript = fopen("../FS_Chris/merger.py","r");
-//    if(MyScript){
-//        PyRun_SimpleFile(MyScript, "../FS_Chris/merger.py");
-//    }else{
-//        std::cout << "Error opening log postprocessing script!" << endl;
-//    }
-//    Py_Finalize();
-//    fclose(MyScript);
-
 
     timer->restart();
     while(1) {
