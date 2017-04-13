@@ -43,4 +43,4 @@ The pendulum is not balancing? Make sure that
 
 
 ### Questions?
-If you need any help, don't hesitate to contact me: cbachhuber89@gmail.com
+If you need any help, don't hesitate to contact me: -- anonymized for paper review --
