@@ -81,10 +81,6 @@ void Processing::TriggerRecording(int size, char* data)
         motorPower = std::stof(item)/10000;
         std::getline(ss, item, ' ');
         usedAngle = std::stof(item)/10000;
-//        std::string item2 = "0.024";
-//        float test = std::stof(item2);
-//        std::cout << "'" << item2 << "'" << std::setprecision(2) << test << std::endl;
-//        std::cout << "'" << item << "'" << std::setprecision(2) << usedAngle << std::endl;
         std::getline(ss, item, ' ');
         usedSpeed = std::stof(item)/10000;
         std::getline(ss, item, ' ');
@@ -92,15 +88,6 @@ void Processing::TriggerRecording(int size, char* data)
         } catch ( std::invalid_argument &e){
             std::cout << e.what() << std::endl;
         }
-
-//        std::cout << "Predicted Angle from Robot: " << predictedAngle << ", predicted speed: " << predictedSpeed << std::endl;
-    }
-    //    if(balancing){
-    //        std::cout << "Balancing started." << std::endl;
-    //    }else{
-    //        std::cout << "Balancing ended." << std::endl;
-    //    }
-
 }
 
 
@@ -110,15 +97,10 @@ void Processing::ProcessFrame()
     float speed = 0;//, filteredspeed=0;
     //    long long proc_time;
     long long inter_time;
-    //printf("Frame %4d: Start Processing.\n",FrameCounter);
-    //    mytime.StartMeasure(1);
-//    std::chrono::high_resolution_clock::time_point p1 = std::chrono::high_resolution_clock::now();
+    
+    //This is the main image processing algorithm, as presented in ICVS 2017
     angle = ProcessMethodOne();
-//    std::chrono::high_resolution_clock::time_point p2 = std::chrono::high_resolution_clock::now();
-//    float period;
-//    period = std::chrono::duration_cast<std::chrono::microseconds>(p2-p1).count();
-    //    proc_time = mytime.StopMeasure(1);
-    //angle = round(angle*20)/20;
+    
     if (LastMeasurementFailed)
     {
         angle = last_angle;
@@ -126,32 +108,16 @@ void Processing::ProcessFrame()
     // Inter frame measure and speed calculations
     end = std::chrono::high_resolution_clock::now();
     inter_time = std::chrono::duration_cast<std::chrono::microseconds>(end-start).count();
-    //    std::cout << inter_time << std::endl;
     speed = (angle-last_angle)/(float(inter_time)/1000000);
-    //    for(int i=0;i<NUMBER_PRED_ANGLES-1;i++){
-    //        prev_angles[i] = prev_angles[i+1];
-    //        filteredspeed += prev_angles[i];
-    //    }
-    //    prev_angles[NUMBER_PRED_ANGLES-1] = speed;
-    //    filteredspeed += speed;
-    //    speed = filteredspeed/NUMBER_PRED_ANGLES;
 
-
-    //Angle speed filtering
-    //    speed = (0.1*speed + 0.9*lastspeed)/2;
-
-    //std::cout << (angle-last_angle) << std::endl;
-    //std::cout << (float(inter_time)/1000000) << std::endl;
-    //std::cout << (angle-last_angle)/(float(inter_time)/1000000) << std::endl;
     last_angle = angle;
     start = std::chrono::high_resolution_clock::now();
-    // SEND ANGLE
+    // SENDING ANGLE
     if(!LastMeasurementFailed){
         emit SendAngle(angle,speed);
         printf("Light: %3d Angle: %6.4f Angle speed %6.4f\r", hist_mean,angle, speed);
     }
 
-    //angle = double(FrameCounter);
     if(balancing){
         QTextStream stream(file);
         stream << std::chrono::duration_cast<std::chrono::microseconds>(start-processorstart).count() << ", ";
@@ -164,23 +130,11 @@ void Processing::ProcessFrame()
 
         stream << ", " << predictedAngle << ", " << predictedSpeed << ", " << motorSpeed << ", " << motorPos << ", " << motorPower << ", " << usedAngle << ", " << usedSpeed << ", " << den << "\n ";// ", " << period << "\n";
     }
-//    stream << "Time" << "," << "Measured Angle" << "," << "Measured Angle Speed" << "," << "Predicted Angle" << "," << "Predicted Angle Speed" << "," <<  "Motor Speed" << "," <<  "Motor Position" << "," << "Motor Power" << ", " << "Used Angle" << ", " << "Used Speed" << ", " << "Denominator" << "\n";
-
-
-    //printf("Current hist mean: %d\n", hist_mean);
-    //printf("Current angle: %6.2f\n", angle);
-    //printf("Current frame: %d\n", FrameCounter);
-
 }
 
 void Processing::CopyFrame(Mat *Frame)
 {
-    //long long time;
-    //printf("Frame %4d: Before copy.\n",FrameCounter);
-    //mytime.StartMeasure(0);
     Frame->copyTo(curIMAGE);
-    //printf("Frame %4d: After copy.\n",FrameCounter);
-    //time = mytime.StopMeasure(0);
 
 }
 
@@ -255,8 +209,6 @@ double Processing::ProcessMethodOne()
     threshold(curIMAGE, curIMAGE, ThreshConst, 255, THRESH_BINARY);
     //    time = mytime.StopMeasure(4);
 
-    //curIMAGE.copyTo(drawing);
-
     //    mytime.StartMeasure(5);
     findContours(curIMAGE, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
     //    time = mytime.StopMeasure(5);
@@ -318,7 +270,6 @@ double Processing::ProcessMethodOne()
         mean_undistorted.y = mean(points_undistorted)[1];
         // Add mean point to list
         mean_points.push_back(mean_distorted);
-        //diff_time = diff_time + mytime.StopMeasure(0);
         //mytime.StartMeasure(0);
 
     }
@@ -342,7 +293,6 @@ double Processing::ProcessMethodOne()
     }
     else
     {
-        //        std::cout << mean_points.size() << std::endl;
         if (LastMeasurementFailed == 0)
         {
             printf("\nAngle measurement failed\n");
@@ -350,9 +300,6 @@ double Processing::ProcessMethodOne()
         }
     }
     //    time = mytime.StopMeasure(10);
-
-    //std::cout << newestFrame << "   " << FrameReadCounter << std::endl;
-    //std::cout << "Frame after: " << time << " microseconds" << std::endl;
     //    time = mytime.StopMeasure(1);
     return angle;
 }
