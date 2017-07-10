@@ -270,15 +270,21 @@ double Processing::ProcessMethodOne()
 
         // --- Check for markers ---
         //        mytime.StartMeasure(7);
+        
         // Reject contours without child
         if (hierarchy[i][2] <= 0) continue;
-        // Reject contours without child
+        
+        // Reject contours with an area of less than 100 pixels
         if (contourArea(Mat(contours[i])) < 100) continue;
-        // Approx main contour and reject non-squares
+        
+        // Approx main contour with a square
         approxPolyDP(Mat(contours[i]), approx, ApproxConst, true);
+        // and reject non-squares
         if (approx.size() != 4) continue;
-        // Approx child contour and reject non-triangles
+        
+        // Approx child contour with a triangle
         approxPolyDP(Mat(contours[hierarchy[i][2]]), approx_child, ApproxConst, true);
+        // and reject non-triangles
         if (approx_child.size() != 3) continue;
         //        time = mytime.StopMeasure(7);
 
