@@ -1,5 +1,5 @@
 # A Testbed for Vision-Based Networked Control Systems
-This repository contains instructions and source code to set up your very own testbed as presented in paper "A Testbed for Vision-Based Networked Control Systems". The testbed balances an inverted pendulum in a vertical position, visually controlled by a camera.
+This repository contains instructions and source code to set up your very own testbed as presented in paper "A Testbed for Vision-Based Networked Control Systems" ([DOI](http://dx.doi.org/10.1007/978-3-319-68345-4_3)). The testbed balances an inverted pendulum in a vertical position, visually controlled by a camera.
 
 It is structured as follows:  folder 'EncoderPC' contains the C++ source for the PC which is connected to the camera that records the video of the pendulum. 'EncoderPC' encodes that video and sends it to 'DecoderPC'. Folder 'DecoderPC' contains the C++ source code for the PC which decodes the video and applies image processing to it and sends the angle to the 'PendulumRobot'. Folder 'PendulumRobot' contains the code and images of the inverted pendulum.
  
