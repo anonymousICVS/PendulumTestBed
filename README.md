@@ -24,7 +24,7 @@ Set up the EV3 robot
 ### Physical Setup
 Build the robot from the Lego parts, according to [these images](PendulumRobot/images/). Glue the [visual markers](visualMarkers.pdf) to the robot as seen in [this image](PendulumRobot/images/left.jpg). Put the Wifi dongle into the [USB Port](PendulumRobot/images/right.jpg).
 
-The information flow chain is as follows:Camera -> EncoderPC -> DecoderPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderPC](DecoderPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
+The information flow chain is as follows: Camera -> EncoderPC -> DecoderPC -> WiFi Router -> PendulumRobot. Connect the elements to each other, assign ip addresses and ports accordingly in the code ([EncoderPC](EncoderPC/encoder.cpp#L165), [DecoderPC](DecoderPC/constants.h#L27), [PendulumRobot](PendulumRobot/controller.py#L84)).
 
 Align the angle of the camera horizontally and put the robot in the center of the image such that both visual markers are visible. Find out the angle the DecoderPC reports when manually bringing the pendulum to the balancing point (after running the projects on the encoderPC and the DecoderPC). Subtract this value in [controller.py, line 206](PendulumRobot/controller.py#L206). Be careful with the light: tune the camera aperture such that the DecoderPC reports a 'Light' value between 90 and 110. Ideally, use a DC light source.
 
